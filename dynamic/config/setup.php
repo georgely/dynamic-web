@@ -2,19 +2,20 @@
 // Setup File:
 
 # Database connection here:
+include('config/connection.php');
 
-//$dbc = new mysqli();
-$dbc = mysqli_connect('127.0.0.1', 'root', '', 'LYDB');
-if (!$dbc) {
-	die('Could not connect: ' . mysql_error());
-}
 
 #Constants:
 DEFINE('D_TEMPLATE', 'template');
 
 
+
 #functions:
 include('functions/data.php');
+include('functions/template.php');
+
+#Site Setup
+$debug = data_setting_value($dbc, 'debug-status');
 
 $site_title = 'LY 1.0';
 $page_title = 'Home page';
@@ -30,5 +31,7 @@ if(isset($_GET['page'])) {
 
 #page setup:
 $page = data_page($dbc, $pageid);
+
+
 
 ?>
